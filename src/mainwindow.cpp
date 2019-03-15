@@ -121,12 +121,14 @@ void MainWindow::on_pushButton_stream_clicked()
 {
 	// TODO: Spin up 2 threads for each controller.
 	bool doIMU = ui->checkBox_doIMU->value();
+	bool doIMU_raw = doIMU;
 	bool doPos = ui->checkBox_doPos->value();
+	bool doPos_raw = doPos;
     QStringList devStringList;
     QList<QListWidgetItem *> lwi = ui->list_devices->selectedItems();
     for( int i=0; i<lwi.count(); ++i )
     {
         devStringList << lwi[i]->text();
     }
-    m_thread.startStreams(devStringList, doIMU, doPos);
+    m_thread.startStreams(devStringList, doIMU, doIMU_raw, doPos, doPos_raw);
 }
