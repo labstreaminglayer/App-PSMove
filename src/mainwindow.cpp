@@ -35,11 +35,7 @@ void MainWindow::load_config(const QString filename)
         {
             QStringRef elname = xmlReader->name();
             if (elname == "sampling-rate")
-                ui->spinBox_sampling_rate->setValue(xmlReader->readElementText().toInt());
-            if (elname == "origin-style")
-            {
-                ui->comboBox_origin->setCurrentIndex(xmlReader->readElementText().toInt());
-            }
+				ui->doubleSpinBox_sampling_rate->setValue(xmlReader->readElementText().toInt());
         }
     }
     if(xmlReader->hasError()) {
@@ -82,7 +78,7 @@ void MainWindow::update_connect_label(bool status)
 {
     if (status)
     {
-        ui->label_conn_status->setText("Connected to OpenVR");
+        ui->label_conn_status->setText("Connected to PSMoveService");
         ui->pushButton_stream->setText("Start Streams");
     }
     else
@@ -112,7 +108,7 @@ void MainWindow::update_stream_button(bool status)
 
 void MainWindow::on_pushButton_scan_clicked()
 {
-    m_thread.initPSMS(ui->spinBox_sampling_rate->value());
+	m_thread.initPSMS(ui->doubleSpinBox_sampling_rate->value());
     ui->pushButton_scan->setText("Scanning...");
     ui->pushButton_scan->setDisabled(true);
 }
@@ -120,10 +116,10 @@ void MainWindow::on_pushButton_scan_clicked()
 void MainWindow::on_pushButton_stream_clicked()
 {
 	// TODO: Spin up 2 threads for each controller.
-	bool doIMU = ui->checkBox_doIMU->value();
-	bool doIMU_raw = doIMU;
-	bool doPos = ui->checkBox_doPos->value();
-	bool doPos_raw = doPos;
+	bool doIMU = ui->checkBox_doIMU->isChecked();
+	bool doIMU_raw = ui->checkBox_doRawIMU->isChecked();
+	bool doPos = ui->checkBox_doPos->isChecked();
+	bool doPos_raw = ui->checkBox_doPos->isChecked();
     QStringList devStringList;
     QList<QListWidgetItem *> lwi = ui->list_devices->selectedItems();
     for( int i=0; i<lwi.count(); ++i )

@@ -1,6 +1,13 @@
 # Lab Streaming Layer Client for PSMoveService
 LSL application to stream data from PSMoveService-Client
 
+There are still some problems:
+
+* The srate is IRREGULAR
+    * Position might be polled faster than the data can change.
+	* Each sample is pushed independently so the timestamps could be reliable.
+* The streams are not properly cleaned up so there might be a memory leak when stopping/starting.
+
 # Build
 
 ## Windows

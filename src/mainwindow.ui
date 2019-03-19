@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>LSL OpenVR</string>
+   <string>LSL PSMoveService</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="outerLayout">
@@ -21,19 +21,6 @@
        <widget class="QLabel" name="label_sampling_rate">
         <property name="text">
          <string>Sampling Rate (Hz)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="spinBox_sampling_rate">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>30000</number>
-        </property>
-        <property name="value">
-         <number>1000</number>
         </property>
        </widget>
       </item>
@@ -48,6 +35,22 @@
        <widget class="QLabel" name="label_conn_status">
         <property name="text">
          <string>Connection Status</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_sampling_rate">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>25.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>75.000000000000000</double>
         </property>
        </widget>
       </item>
@@ -75,9 +78,29 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="checkBox_doRawIMU">
+          <property name="text">
+           <string>raw IMU</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="checkBox_doPos">
           <property name="text">
-           <string>Position</string>
+           <string>Pose</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_doRawPos">
+          <property name="text">
+           <string>raw Position</string>
           </property>
           <property name="checked">
            <bool>true</bool>
